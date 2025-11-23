@@ -5,9 +5,9 @@ function Product() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8080/Products/all')
+        axios.get('http://localhost:8080/product/get-all')
             .then(response => {
-                setProducts(response.data); 
+                setProducts(response.data);
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
@@ -20,12 +20,15 @@ function Product() {
                 <p>Loading products...</p>
             ) : (
                 products.map(product => (
-                    <div className="col-sm-6 mb-3 mb-sm-0" key={product.id}>
+                    <div className="col-sm-6 mb-3 mb-sm-0" key={product.productID}>
                         <div className="card">
                             <div className="card-body">
                                 <h5 className="card-title">{product.name}</h5>
-                                <p className="card-text">{product.description}</p>
+                                <p className="card-text">{product.productName}</p>
                                 <p className="card-text">Price: ${product.price}</p>
+                                <p className='Card-text'>{product.qty}</p>
+                                <p className="card-text">{product.category}</p>
+                                <p className="card-text">{product.description}</p>
                                 <a href="#" className="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
